@@ -1,6 +1,6 @@
 package roles;
 
-public enum Role {
+public enum role {
     SELLER,
     BUYER;
 }

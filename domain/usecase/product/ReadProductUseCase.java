@@ -2,7 +2,7 @@ package domain.usecase.product;
 
 import domain.model.ProductModel;
 import productRepo.ProductRepository;
-import core.usecase.UseCaseApp;
+
 
 import java.sql.SQLException;
 import java.util.List;

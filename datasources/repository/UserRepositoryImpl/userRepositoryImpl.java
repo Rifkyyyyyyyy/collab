@@ -6,11 +6,11 @@ import domain.model.UserModel;
 import userRepo.UserRepository;
 import userServices.UserService;
 
-public class UserRepositoryImpl implements UserRepository {
+public class userRepositoryImpl implements UserRepository {
 
     private final UserService service;
 
-    UserRepositoryImpl(UserService service) {
+   public userRepositoryImpl(UserService service) {
         this.service = service;
     }
 

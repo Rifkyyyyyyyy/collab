@@ -6,8 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import domain.model.UserModel;
-import conectionServices.ConnectionServices;
-import roles.Role;
+import roles.role;
+import conectionServices.*;;
+
 
 public class UserService {
 
@@ -21,7 +22,7 @@ public class UserService {
     public CompletableFuture<UserModel> getUserByUsernameAndPassword(String username, String password) {
         return CompletableFuture.supplyAsync(() -> {
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-            try (Connection conn = ConnectionServices.getConnection();
+            try (Connection conn = connectionServices.getConnection();
                     PreparedStatement stmt = conn.prepareStatement(sql)) {
 
                 stmt.setString(1, username);
@@ -30,8 +31,10 @@ public class UserService {
 
                 if (rs.next()) {
                     int id = rs.getInt("id");
-                    String role = rs.getString("role").toUpperCase(); // Retrieve role
-                    return new UserModel(id, username, password, Role.valueOf(role));
+
+                    String roleString = rs.getString("role").toUpperCase();
+                    role roles = role.valueOf(roleString);
+                    return new UserModel(id, username, password, roles);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException("Login failed: " + e.getMessage(), e);
@@ -44,7 +47,7 @@ public class UserService {
     public CompletableFuture<Boolean> registerUser(UserModel user) {
         return CompletableFuture.supplyAsync(() -> {
             String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-            try (Connection conn = ConnectionServices.getConnection();
+            try (Connection conn = connectionServices.getConnection();
                     PreparedStatement stmt = conn.prepareStatement(sql)) {
 
                 stmt.setString(1, user.getUsername());

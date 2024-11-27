@@ -5,9 +5,9 @@ import java.util.concurrent.CompletableFuture;
 
 import domain.model.ProductModel;
 import productRepo.ProductRepository;
-import core.usecase.UseCaseApp;
+import core.usecase.useCaseApp;
 
-public class AddProductUsecase extends UseCaseApp<Void, ProductModel> {
+public class AddProductUsecase extends useCaseApp<Void, ProductModel> {
 
     private final ProductRepository productRepository;
 

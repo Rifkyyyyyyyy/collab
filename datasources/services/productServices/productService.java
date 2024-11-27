@@ -8,19 +8,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import domain.model.ProductModel;
-import conectionServices.ConnectionServices;
+import conectionServices.connectionServices;
 
 
 
 
-public class ProductService {
+public class productService {
 
     private final Connection connection;
     private final ExecutorService executorService; // Executor to run async tasks
 
     // Constructor without parameters, directly getting the connection from ConnectionServices
-    public ProductService() throws SQLException {
-        this.connection = ConnectionServices.getConnection();  // Using ConnectionServices to get the connection
+    public productService() throws SQLException {
+        this.connection = connectionServices.getConnection();  // Using ConnectionServices to get the connection
         this.executorService = Executors.newCachedThreadPool(); // Initialize the executor
     }
 
